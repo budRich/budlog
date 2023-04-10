@@ -1,0 +1,40 @@
+<style>
+  * {margin: 0; padding: 0;}
+  main { 
+    display: flex ;
+    flex-flow: row wrap-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 88%;
+    margin: 0 auto 0 1em;
+    height: auto;
+  }
+  main article {
+    max-width: 62ch;
+    font-family: serif;
+    font-size: 1.2em;
+    padding: 1em 2em 1em 0;
+  }
+  main header {
+    padding: 1em 0;
+    display: flex ;
+    flex-flow: column nowrap;
+    max-width: 40ch;
+    justify-content: center;
+    position: relative;
+  }
+
+  article a[rel=external]::after { content: "^"; }
+
+  article footer {
+    margin-top: 1rem;
+    font-family: sans-serif;
+    font-size: 0.8em;
+  }
+
+  nav * {margin:0 ; padding: 0;}
+  nav summary {cursor: pointer;}
+  nav details details {margin-left: 1em; display: box;}
+  nav details ul {list-style: none; margin-left: 1.4em;}
+
+</style>

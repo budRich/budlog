@@ -1,0 +1,38 @@
+{{ $isposts := eq .Section "posts" }}
+{{ $allposts := where (site.RegularPages) "Type" "in" site.Params.mainSections }}
+<header>
+  <h2><a href=/>{{ .Site.Title }}</a></h2>
+  <nav>
+    <details {{ if $isposts }}open{{ end }}>
+      <summary><a href="/posts">posts</a></summary>
+      {{ range ($allposts).GroupByDate "2006" }}
+        <details {{ if and (eq ($.Date.Format "2006") .Key) $isposts }}open{{ end }}>
+          <summary>{{ .Key }}</summary>
+          {{ range .GroupByDate "January" }}
+            <details {{ if and (eq ($.Date.Format "January") .Key) $isposts }}open{{ end }}>
+              <summary>{{ .Key }}</summary>
+              <ul>
+              {{ range .Pages.ByDate }}
+                <li><a href={{ .Permalink }}>{{ .Date.Format "02" }}|{{ .Title }}</a></li>
+              {{ end }}
+              </ul>
+            </details>
+          {{ end }}
+        </details>
+      {{ end }}
+    </details>
+
+  {{ with ($.Site.GetPage (printf "/%s" "linktags")) }}
+  <details {{ if eq $.Section "links" }}open{{ end }}>
+    <summary><a href="/links"><b>links</b></a></summary>
+    <ul>
+    {{ range .Pages }}
+      <li><a href="{{ .Permalink }}">#{{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+  </details>
+  {{ end }}
+
+
+  </nav>
+</header>

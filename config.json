@@ -1,0 +1,28 @@
+{
+  "baseURL": "http://example.org/",
+  "languageCode": "en-us",
+  "title": "budlog",
+
+  "params": {
+    "mainSections": ["posts"]
+  },
+
+  "taxonomies": {
+      "tag": "tags",
+      "linktag": "linktags"
+   },
+
+   "module":
+   {
+     "replacements": ["github.com/budRich/budlabs-hugo-private  -> /home/bud/git/bud/budlabs-hugo-private ", "github.com/budRich/budnav -> /home/bud/git/bud/budnav"],
+     "imports": [
+       {"path": "github.com/budRich/budlabs-hugo-private"}
+     ],
+     "mounts": [
+       {
+         "source": "content",
+         "target": "content"
+       }
+     ]
+   }
+}
