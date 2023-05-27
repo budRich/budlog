@@ -1,3 +1,3 @@
-module github.com/budrich/budlog
+module github.com/budRich/budlog
 
 go 1.20
