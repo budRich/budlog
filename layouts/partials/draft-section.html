@@ -1,0 +1,31 @@
+{{ $isposts := eq .Section "drafts" }}
+{{ $allposts := $.Site.GetPage (printf "/%s" "drafts") }}
+{{ $days := $.Site.GetPage (printf "/%s" "days") }}
+
+    <details>
+      <summary><b>drafts</b></summary>
+      {{ range ($allposts).Pages.GroupByDate "2006" }}
+        <details open>
+          <summary><b>{{ .Key }}</b></summary>
+          {{ range .GroupByDate "January" }}
+            <details open>
+              <summary><b>{{ .Key }}</b></summary>
+              <ul>
+              {{ range .Pages.ByDate }}
+                <li><a href={{ .Permalink }}>{{ .Date.Format "02" }}|{{ .Title }}</a></li>
+              {{ end }}
+              </ul>
+            </details>
+          {{ end }}
+        </details>
+      {{ end }}
+    </details>
+
+    <details>
+      <summary><b>days</b></summary>
+      <ul>
+        {{ range $days.Pages }}
+        <li><a href={{ .Permalink }}>{{ .File.BaseFileName }}</a></li>
+        {{ end }}
+      </ul>
+    </details>

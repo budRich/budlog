@@ -1,36 +1,5 @@
-{{ partial "style" . }}
-<main>
-  {{ partial "sidenav" . }}
-  <section>
-    <article>
-      <h2>Tabs in my browser!</h2>
-    </article>
-    <hr>
-    {{ range .Pages }}
-    <article>
-      <h3><a href={{ .Params.link }}>{{ .Title }}</a></h3>
-      
-      {{ .Content }}
-
-      <footer>
-      {{ with .Param "linktags" }}
-      <div>
-      {{ range $index, $linktag := . }}
-        {{- if gt $index 0 }}, {{ end -}}
-          {{ with $.Site.GetPage (printf "/linktags/%s" $linktag) -}}
-            <a href="{{ .Permalink }}">#{{ $linktag }}</a>
-          {{- end -}}
-        {{- end -}}
-      </div>
-      {{ end }}
-      <div>Link added: {{ .Date.Format "060106" }}</div>
-      </footer>
-    </article>
-    {{ end }}
-    <hr>
-  </section>
-</main>
-
-
-
-
+{{- define "main" }}
+  {{ range .Pages }}
+    {{ partial "bookmark.html" . }}
+  {{ end }}
+{{- end }}

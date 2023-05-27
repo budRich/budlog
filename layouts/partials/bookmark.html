@@ -1,0 +1,23 @@
+<article>
+  <header>
+    <b><a href={{ .Params.link }} target=_blank>{{ .Title }}</a></b>
+
+    <section>
+    {{ with .Param "linktags" }}
+    <div>
+    {{ range $index, $linktag := . }}
+      {{- if gt $index 0 }}, {{ end -}}
+        {{ with $.Site.GetPage (printf "/linktags/%s" $linktag) -}}
+          <a href="{{ .Permalink }}">#{{ $linktag }}</a>
+        {{- end -}}
+      {{- end -}}
+    </div>
+    {{ end }}
+    <div>
+      <i>link added: <b>{{ .Date.Format "060106" }}</b></i>
+    </div>
+    </section>
+  </header>
+  {{ .Content }}
+  <hr>
+</article>

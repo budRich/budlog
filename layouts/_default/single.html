@@ -1,1 +1,21 @@
-{{ .Content }}
+{{ define "title" }}
+  {{- with .Title -}}
+    {{ . }} &ndash; 
+  {{- end }} {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+
+{{ if isset .Params "tags" }}
+  {{ partial "post.html" . }}
+{{ else if isset .Params "linktags" }}
+  {{ partial "bookmark.html" . }}
+{{ else if isset .Params "title" }}
+  <h2>{{ .Title }}</h2>
+  {{ .Content }}
+{{ else }}
+  <h2>{{ .File.BaseFileName }}</h2>
+  {{ .Content }}
+{{ end }}
+
+{{ end }}

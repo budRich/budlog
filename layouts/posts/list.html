@@ -1,17 +1,12 @@
-{{ partial "style" . }}
-<main>
-  {{ partial "sidenav" . }}
-  <section>
-    <article>
-      <h2>blogroll!</h2>
-    </article>
-    <hr>
-    {{ range .Pages }}
-    <article>
-      <h3><a href={{ .Params.link }}>{{ .Title }}</a></h3>
-      {{ .Content }}
-    </article>
-    {{ end }}
-    <hr>
-  </section>
-</main>
+{{ define "main" }}
+
+{{ range .Pages }}
+<article>
+  <h3><a href={{ .Params.link }}>{{ .Title }}</a></h3>
+  {{ .Content }}
+</article>
+{{ end }}
+<hr>
+{{ end }}
+
+

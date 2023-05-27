@@ -1,38 +1,37 @@
-{{ $isposts := eq .Section "posts" }}
+{{ $isposts := eq $.Section "posts" }}
 {{ $allposts := where (site.RegularPages) "Type" "in" site.Params.mainSections }}
-<header>
-  <h2><a href=/>{{ .Site.Title }}</a></h2>
+<aside>
   <nav>
-    <details {{ if $isposts }}open{{ end }}>
-      <summary><a href="/posts">posts</a></summary>
-      {{ range ($allposts).GroupByDate "2006" }}
-        <details {{ if and (eq ($.Date.Format "2006") .Key) $isposts }}open{{ end }}>
-          <summary>{{ .Key }}</summary>
-          {{ range .GroupByDate "January" }}
-            <details {{ if and (eq ($.Date.Format "January") .Key) $isposts }}open{{ end }}>
-              <summary>{{ .Key }}</summary>
-              <ul>
-              {{ range .Pages.ByDate }}
-                <li><a href={{ .Permalink }}>{{ .Date.Format "02" }}|{{ .Title }}</a></li>
-              {{ end }}
-              </ul>
-            </details>
-          {{ end }}
-        </details>
-      {{ end }}
+    <details>
+      <summary><b>RSS</b></summary>
+      <ul>
+        <li><a href=/posts/index.xml>blog</a></li>
+        <li><a href=/links/index.xml>bookmarks</a></li>
+        <li><a href="https://www.youtube.com/feeds/videos.xml?channel_id=UCi8XrDg1bK_MJ0goOnbpTMQ">YouTube</a></li>
+      </ul>
     </details>
-
-  {{ with ($.Site.GetPage (printf "/%s" "linktags")) }}
-  <details {{ if eq $.Section "links" }}open{{ end }}>
-    <summary><a href="/links"><b>links</b></a></summary>
-    <ul>
-    {{ range .Pages }}
-      <li><a href="{{ .Permalink }}">#{{ .Title }}</a></li>
+    {{ if hugo.Environment | eq "development" -}}
+      {{- partialCached "draft-section" . -}}
+    {{- end -}}
+    {{ if $isposts }}
+      <details open>
+        <summary><b>posts</b></summary>
+        {{- range ($allposts).GroupByDate "2006" }}
+          <details {{ if (eq ($.Date.Format "2006") .Key) }}open{{ end }}>
+            <summary><b>{{ .Key }}</b></summary>
+            {{- range .GroupByDate "January" }}
+              <details {{ if (eq ($.Date.Format "January") .Key) }}open{{ end }}>
+                <summary><b>{{ .Key }}</b></summary>
+                <ul>
+                {{- range .Pages.ByDate }}
+                  <li><a href={{ .Permalink }}>{{ .Date.Format "02" }}|{{ .Title }}</a></li>
+                {{ end }}
+                </ul>
+              </details>
+            {{- end }}
+          </details>
+        {{- end }}
+      </details>
     {{ end }}
-    </ul>
-  </details>
-  {{ end }}
-
-
   </nav>
-</header>
+</aside>

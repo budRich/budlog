@@ -1,0 +1,32 @@
+<article>
+  <header>
+    <nav>
+      {{ with .CurrentSection.Pages.Prev . }}
+      <a href={{ .RelPermalink }} title={{ .Title }}>previous</a>{{ end }}
+      {{ with .CurrentSection.Pages.Next . }}
+      <a href={{ .RelPermalink }} title={{ .Title }}>next</a>{{ end }}
+    </nav>
+    <h1>{{ .Title }}</h1>
+    <section>
+      <div>
+        <i>published: <b>{{ .PublishDate | dateFormat "060102" }}</b></i>
+        {{ if ne .PublishDate .Lastmod -}}
+        <i>updated: <b>{{ .Lastmod | dateFormat "060102" }}</b></i>
+        {{- end -}}
+      </div>
+      
+      {{ with .Param "tags" }}
+      <div>
+      {{ range $index, $tag := . }}
+        {{- if gt $index 0 }}, {{ end -}}
+          {{ with $.Site.GetPage (printf "/tags/%s" $tag) -}}
+            <a href="{{ .Permalink }}">#{{ $tag }}</a>
+          {{- end -}}
+        {{- end -}}
+      </div>
+      {{ end }}
+    </section>
+    <hr>
+  </header>
+  {{ .Content }}
+</article>

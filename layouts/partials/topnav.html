@@ -1,0 +1,11 @@
+{{ $allposts := where (site.RegularPages) "Type" "in" site.Params.mainSections }}
+<nav>
+  <a href=/>home</a>
+  {{ range first 1 $allposts }}
+  <a href={{ .Permalink }}>blog</a>
+  {{ end }}
+  <a href=/links>bookmarks</a>
+  <a href=/guestbook>guestbook</a>
+  <a href=https://github.com/budRich target=_blank>GitHub<sup>^</sup></a>
+  <a href=https://youtube.com/c/dubbeltumme target=_blank>YouTube<sup>^</sup></a>
+</nav>
