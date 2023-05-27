@@ -1,0 +1,140 @@
+// @import "general";
+
+.warning {
+  background-color: red;
+}
+.dotfile {
+  > * {
+    margin: 0;
+    font-family: monospace;
+    font-size: .9em;
+    padding: 0 .4em;
+    line-height: normal;
+  }
+  pre {border: none;}
+  header {
+    background-color: lightgrey;
+    border-bottom: black .05em solid;
+
+  }
+  margin-top: 1em;
+  border: black .05em solid;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  > header {
+    width: 100%;
+
+    > nav {
+      padding: .4em .2em 0 .5em;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 50ch;
+    }
+  }
+}
+
+a sup { font-size: 0.5em; line-height: normal;}
+
+article {
+  > * {
+    margin-bottom: .3em;
+  }
+}
+
+main {
+  display: flex;
+  flex-flow: row wrap-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+  section {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    max-width: 62ch;
+    font-family: serif;
+    font-size: 1.8em;
+    line-height: 1.3em;
+    width: 50ch;
+    min-width: 26ch;
+    flex: 2;
+    padding: 0 .8em;
+
+    
+
+  }
+
+  article {
+    header {
+      margin: .4em .3em 0 0;
+
+      > * {
+        padding: 0;
+        margin: 0;
+      }
+
+      h1, h2 {margin-bottom: .4em; line-height: 1.3em; }
+      hr {margin-top: .4em; }
+
+      section, nav {
+        font-size: 0.6em;
+        line-height: 1.3em;
+        font-family: sans-serif;
+      }
+    }
+  }
+
+  aside {
+    display: flex;
+    flex-flow: column nowrap;
+    min-width: 26ch;
+    position: relative;
+    padding: 0 1em;
+
+    nav {
+      * {margin:0 ; padding: 0;}
+      summary {cursor: pointer;}
+      details {
+        details {margin-left: 1em; display: box;}
+        ul {list-style: none; margin-left: 1.4em;}
+        li {display: block;}
+      }
+    }
+  }
+}
+
+pre, code {
+  font-size: .9em;
+  line-height: normal;
+  padding: 0 .4em;
+  background-color: #FDFFEF;
+}
+
+pre code {
+  padding:0;
+}
+
+p code, a {
+  white-space: nowrap;
+}
+
+pre, p code {
+  border: .05em solid;
+}
