@@ -1,16 +1,44 @@
 {
   "baseURL": "http://example.org/",
-  "languageCode": "en-us",
   "title": "budlog",
-
-  "params": {
-    "mainSections": ["posts"]
-  },
+  "languageCode": "en-us",
+  "copyright": "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.",
+  "enableGitInfo": true,
 
   "taxonomies": {
       "tag": "tags",
       "linktag": "linktags"
    },
+
+
+  "outputs": {
+        "home": ["HTML"],
+        "section": ["HTML","RSS"],
+        "taxonomy": ["HTML"],
+        "term": ["HTML"]
+     },
+
+  "params": {
+    "mainSections": ["posts"]
+  },
+
+     "markup": {
+        "highlight": {
+         "anchorLineNos": false,
+         "codeFences": false,
+         "guessSyntax": false,
+         "hl_Lines": "",
+         "hl_inline": false,
+         "lineAnchors": "",
+         "lineNoStart": 1,
+         "lineNos": false,
+         "lineNumbersInTable": true,
+         "noClasses": true,
+         "noHl": false,
+         "style": "monokai",
+         "tabWidth": 4
+      }
+     },
 
    "module":
    {
