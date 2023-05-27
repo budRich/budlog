@@ -42,15 +42,30 @@
 
    "module":
    {
-     "replacements": ["github.com/budRich/budlabs-hugo-private  -> /home/bud/git/bud/budlabs-hugo-private ", "github.com/budRich/budnav -> /home/bud/git/bud/budnav"],
-     "imports": [
-       {"path": "github.com/budRich/budlabs-hugo-private"}
+     "replacements": [
+       "github.com/budRich/budlabs-hugo-private  -> /home/bud/git/bud/budlabs-hugo-private ",
+       "github.com/budRich/dotfiles -> /home/bud/git/bud/dotfiles"
      ],
-     "mounts": [
+     "imports": [
        {
-         "source": "content",
-         "target": "content"
+         "path": "github.com/budRich/budlabs-hugo-private",
+         "mounts": [
+           {
+             "source": "content",
+             "target": "content"
+           }
+         ]
+       },
+       {
+         "path": "github.com/budRich/dotfiles",
+         "mounts": [
+           {
+             "source": ".",
+             "target": "assets/dotfiles"
+           }
+         ]
        }
      ]
+     
    }
 }
