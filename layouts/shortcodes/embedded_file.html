@@ -1,0 +1,21 @@
+{{ $source := .Get 0 }}
+{{ $name   := .Get 1 }}
+{{ $lang   := .Get 2 }}
+
+{{ with resources.Get $source }}
+
+{{ $file := . |  resources.Copy $source }}
+  <div class=dotfile>
+    <header><a href={{ $file.RelPermalink }}>
+      {{- with $name -}}
+        {{ . }}
+      {{- else -}}
+        {{ $source }}
+      {{- end -}}</a></header>
+    <pre><code>{{ $file.Content }}</code></pre>
+  </div>
+{{ else }}
+  <div class=warning>
+    embedded file: <code>{{ $source }}</code> not found.
+  </div>
+{{ end }}
