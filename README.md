@@ -1,3 +1,5 @@
+# MAINTAINED AT https://git.budlabs.xyz/bud/budlog
+
 these are the configuration and layoutfiles
 for the https://budrich.github.io website.  
 
